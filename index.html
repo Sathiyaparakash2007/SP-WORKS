@@ -1,33 +1,334 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My AWS Deployment Project</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #eef2f7;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        .card {
-            max-width: 650px;
-            margin: auto;
-            padding: 35px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px #0002;
-        }
-        h1 { color: #1565c0; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaTech | Build Your Future</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #080d1b;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 8%;
+      background: #0c1325;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #66e3ff;
+    }
+
+    nav a {
+      color: #d5dbea;
+      text-decoration: none;
+      margin-left: 25px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #66e3ff;
+    }
+
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      padding: 70px 8%;
+      background:
+        radial-gradient(ellipse at 80% 40%,
+        #163b69 0%, transparent 45%),
+        linear-gradient(135deg, #080d1b, #101b35);
+    }
+
+    .hero-content {
+      max-width: 700px;
+      animation: fadeIn 1s ease;
+    }
+
+    .tag {
+      color: #66e3ff;
+      border: 1px solid #315b80;
+      border-radius: 30px;
+      padding: 8px 16px;
+      display: inline-block;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.1;
+      margin-bottom: 25px;
+    }
+
+    h1 span {
+      color: #66e3ff;
+    }
+
+    .hero p {
+      color: #aab7ce;
+      font-size: 18px;
+      max-width: 560px;
+      margin-bottom: 32px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 26px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      background: #66e3ff;
+      color: #08111f;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px #66e3ff35;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1px solid #53627d;
+      margin-left: 10px;
+    }
+
+    section {
+      padding: 85px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      color: #aab7ce;
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      padding: 30px;
+      border: 1px solid #24324b;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #121d32, #0b1222);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #66e3ff;
+    }
+
+    .card .icon {
+      font-size: 36px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 21px;
+    }
+
+    .card p {
+      color: #aab7ce;
+    }
+
+    .about {
+      background: #0c1325;
+      text-align: center;
+    }
+
+    .about p {
+      max-width: 750px;
+      margin: 20px auto 30px;
+      color: #aab7ce;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px;
+      color: #aab7ce;
+      border-top: 1px solid #24324b;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 18px 5%;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      nav a {
+        margin-left: 10px;
+        font-size: 14px;
+      }
+
+      .hero {
+        padding: 75px 6%;
+        min-height: 75vh;
+      }
+
+      section {
+        padding: 65px 6%;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-outline {
+        margin: 12px 0 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="card">
-        <h1>Hello from AWS EC2!</h1>
-        <p>This website is deployed automatically.</p>
-        <p color=blue>GitHub + CodePipeline + CodeDeploy</p>
-        <p>Version: 1.0</p>
-    </div>
+
+  <header>
+    <div class="logo">NovaTech.</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="tag">✦ INNOVATION STARTS HERE</span>
+        <h1>Build Something <span>Amazing.</span></h1>
+        <p>
+          We turn bold ideas into beautiful digital experiences.
+          Discover smarter technology, creative design, and
+          solutions built for tomorrow.
+        </p>
+        <a href="#services" class="btn">Explore Services →</a>
+        <a href="#about" class="btn btn-outline">Learn More</a>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2 class="section-title">What We Do</h2>
+      <p class="section-desc">
+        Everything you need to grow in the digital world.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon">💻</div>
+          <h3>Web Development</h3>
+          <p>
+            Fast, responsive, and modern websites
+            designed to make your business stand out.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🎨</div>
+          <h3>Creative Design</h3>
+          <p>
+            Beautiful user interfaces and memorable
+            experiences your customers will love.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🚀</div>
+          <h3>Cloud Solutions</h3>
+          <p>
+            Scalable cloud infrastructure to help
+            your applications grow with confidence.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2 class="section-title">Ideas Into Reality</h2>
+      <p>
+        At NovaTech, we believe great technology should
+        be powerful, accessible, and beautifully designed.
+        Our goal is to help people and businesses create
+        meaningful digital experiences.
+      </p>
+      <a href="#contact" class="btn">Let's Work Together</a>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Have a Project?</h2>
+      <p class="section-desc">
+        Have an idea in mind? Let's start a conversation.
+      </p>
+      <div style="text-align:center">
+        <button class="btn" onclick="contactUs()">
+          Contact Us ✉
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 NovaTech. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function contactUs() {
+      alert(
+        "Thanks for your interest! Add your email or contact form here."
+      );
+    }
+  </script>
+
 </body>
 </html>
